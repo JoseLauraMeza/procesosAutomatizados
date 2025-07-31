@@ -42,5 +42,8 @@
         </tfoot>
       </table>
     </div>
+    <div class="text-end mt-3">
+    <a href="rutas.php?r=finalizar" class="btn btn-success">✅ Finalizar Compra</a>
+  </div>
   <?php endif; ?>
 </div>

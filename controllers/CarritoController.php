@@ -20,4 +20,23 @@ class CarritoController {
         include "views/carrito.php";
         include "views/footer.php";
     }
+
+    public function finalizar() {
+    session_start();
+    $carrito = $_SESSION['carrito'] ?? [];
+
+    if (empty($carrito)) {
+        header("Location: rutas.php?r=carrito");
+        return;
+    }
+
+    require_once "models/Venta.php";
+
+    $id_cliente = 1; 
+    $id_empleado = 1;
+    Venta::registrar($id_cliente, $id_empleado, $carrito);
+
+    unset($_SESSION['carrito']);
+    header("Location: rutas.php?r=productos");
+    }
 }

@@ -17,6 +17,9 @@ switch ($r) {
     case 'carrito':
         (new CarritoController())->mostrar();
         break;
+    case 'finalizar':
+        (new CarritoController())->finalizar();
+        break;
     default:
         echo "Ruta no válida";
 }
