@@ -44,6 +44,7 @@
     </div>
     <div class="text-end mt-3">
     <a href="rutas.php?r=finalizar" class="btn btn-success">✅ Finalizar Compra</a>
+    <a href="rutas.php?r=boleta" class="btn btn-success" target="_blank" rel="noopener noreferrer">Ver boleta</a>
   </div>
   <?php endif; ?>
 </div>

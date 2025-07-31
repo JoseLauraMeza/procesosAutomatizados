@@ -20,6 +20,9 @@ switch ($r) {
     case 'finalizar':
         (new CarritoController())->finalizar();
         break;
+    case 'boleta':
+        (new CarritoController())->generarBoleta();
+        break;
     default:
         echo "Ruta no válida";
 }
