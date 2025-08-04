@@ -28,6 +28,8 @@ CREATE TABLE Clientes (
     nombres VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
     dni VARCHAR(15) UNIQUE,
+    usuario VARCHAR(50) UNIQUE,
+    password VARCHAR(255),
     correo VARCHAR(100),
     telefono VARCHAR(15),
     direccion VARCHAR(150)
@@ -38,6 +40,8 @@ CREATE TABLE Empleados (
     id_empleado INT AUTO_INCREMENT PRIMARY KEY,
     nombres VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
+    usuario VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
     cargo VARCHAR(50),
     correo VARCHAR(100),
     telefono VARCHAR(15)
@@ -104,9 +108,9 @@ INSERT INTO clientes (nombres, apellidos, dni, correo, telefono, direccion) VALU
 ('Ana', 'Gonzales', '87654321', 'ana.gonzales@hotmail.com', '987654321', 'Calle Falsa 456');
 
 -- 🔹 Insertar Empleados
-INSERT INTO empleados (nombres, apellidos, cargo, correo, telefono) VALUES
-('Carlos', 'Ramírez', 'Vendedor', 'carlos.ramirez@tiendaropa.com', '988776655'),
-('Lucía', 'Mendoza', 'Cajera', 'lucia.mendoza@tiendaropa.com', '977665544');
+INSERT INTO empleados (nombres, apellidos, usuario, password, cargo, correo, telefono) VALUES
+('Carlos', 'Ramírez', 'cramirez', '$2y$10$EizHkX.M2yAS9LHblS4pX.JgY29P.J.eXhA7sLwVvj6aNfG.NqT9S', 'Vendedor', 'carlos.ramirez@tiendaropa.com', '988776655'), -- pass: 12345
+('Lucía', 'Mendoza', 'lmendoza', '$2y$10$EizHkX.M2yAS9LHblS4pX.JgY29P.J.eXhA7sLwVvj6aNfG.NqT9S', 'Cajera', 'lucia.mendoza@tiendaropa.com', '977665544'); -- pass: 12345
 
 -- 🔹 Insertar Ventas
 INSERT INTO ventas (fecha, id_cliente, id_empleado, total) VALUES

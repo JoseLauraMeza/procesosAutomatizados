@@ -24,6 +24,30 @@
         <li class="nav-item">
           <a href="rutas.php?r=productos" class="nav-link">Productos</a>
         </li>
+        <?php if (isset($_SESSION['id_empleado'])): // Sesión de Empleado ?>
+            <li class="nav-item">
+                <span class="navbar-text me-3">
+                    Empleado: <?= htmlspecialchars($_SESSION['nombres']) ?>
+                </span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="rutas.php?r=logout">Cerrar Sesión</a>
+            </li>
+        <?php elseif (isset($_SESSION['id_cliente'])): // Sesión de Cliente ?>
+            <li class="nav-item">
+                <span class="navbar-text me-3">
+                    Hola, <?= htmlspecialchars($_SESSION['nombres_cliente']) ?>
+                </span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="rutas.php?r=logout">Cerrar Sesión</a>
+            </li>
+        <?php else: // Sin sesión ?>
+            <li class="nav-item">
+                <a class="nav-link" href="rutas.php?r=registro">Registrarse</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="rutas.php?r=login">Iniciar Sesión</a></li>
+        <?php endif; ?>
         <li class="nav-item">
           <a href="rutas.php?r=carrito" class="btn btn-outline-light ms-2">🛒 Ver carrito</a>
         </li>

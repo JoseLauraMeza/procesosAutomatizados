@@ -27,29 +27,43 @@ class CarritoController {
     }
 
     public function finalizar() {
-    session_start();
+    // La compra la puede finalizar un cliente logueado o un empleado en nombre de un cliente.
+    // Por ahora, priorizaremos al cliente logueado.
+    if (!isset($_SESSION['id_cliente']) && !isset($_SESSION['id_empleado'])) {
+        // Si nadie está logueado, se redirige al login de clientes como acción por defecto.
+        header("Location: rutas.php?r=login");
+        return;
+    }
+
     $carrito = $_SESSION['carrito'] ?? [];
 
     if (empty($carrito)) {
         header("Location: rutas.php?r=carrito");
         return;
     }
-
     require_once "models/Venta.php";
 
-    $id_cliente = 1; 
-    $id_empleado = 1;
+    // Asignar el cliente y empleado correctos a la venta
+    $id_cliente = $_SESSION['id_cliente'] ?? 1; // Si un empleado compra, se asigna al cliente por defecto (ID 1). Idealmente, el empleado seleccionaría un cliente.
+    $id_empleado = $_SESSION['id_empleado'] ?? null; // La venta puede no tener un empleado si la hace el cliente directamente.
+
+    // La base de datos requiere un empleado, así que si es un cliente, asignamos uno por defecto.
+    if ($id_empleado === null) $id_empleado = 1; // Asignar al empleado 'Carlos Ramírez' por defecto.
+
     Venta::registrar($id_cliente, $id_empleado, $carrito);
 
     unset($_SESSION['carrito']);
     header("Location: rutas.php?r=productos");
     }
 
-    public function generarBoleta()
-    {
-    session_start();
+    public function generarBoleta() {
+    // Proteger la ruta, solo para empleados logueados
+    if (!isset($_SESSION['id_empleado']) && !isset($_SESSION['id_cliente'])) {
+        header("Location: rutas.php?r=login");
+        return;
+    }
 
-    if (!isset($_SESSION['carrito']) || empty($_SESSION['carrito'])) {
+    if (empty($_SESSION['carrito'])) {
         echo "No hay productos en el carrito.";
         return;
     }
