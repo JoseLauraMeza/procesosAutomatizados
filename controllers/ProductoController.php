@@ -14,4 +14,5 @@ class ProductoController {
     include "views/productos.php";
     include "views/footer.php";
     }
+    
 }

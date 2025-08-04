@@ -79,7 +79,7 @@ INSERT INTO categorias (nombre_categoria) VALUES
 -- 🔹 Insertar Productos (4 por categoría, con marcas y modelos reales o realistas)
 INSERT INTO productos (nombre, descripcion, talla, color, precio, stock, foto_url, id_categoria) VALUES
 -- 🟫 Polos (id_categoria = 1)
-('Polo Nike Dri-FIT', 'Polo deportivo con tecnología Dri-FIT que absorbe el sudor.', 'M', 'Negro', 79.90, 50, 'nike_dri_fit.jpg', 1),
+('Polo Nike Dri-FIT', 'Polo deportivo con tecnología Dri-FIT que absorbe el sudor.', 'M', 'Negro', 79.90, 50, 'nikedrifit.jpg', 1),
 ('Polo Adidas Essentials', 'Polo casual con logo bordado en el pecho.', 'L', 'Blanco', 69.90, 40, 'adidas_essentials.jpg', 1),
 ('Polo Puma Classics', 'Polo clásico con diseño sencillo y elegante.', 'S', 'Gris', 59.90, 60, 'puma_classics.jpg', 1),
 ('Polo Lacoste Slim Fit', 'Polo de algodón premium con logo de cocodrilo.', 'M', 'Azul Marino', 149.90, 30, 'lacoste_slim.jpg', 1),
