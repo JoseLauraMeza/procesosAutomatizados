@@ -27,10 +27,8 @@ class CarritoController {
     }
 
     public function finalizar() {
-    // La compra la puede finalizar un cliente logueado o un empleado en nombre de un cliente.
-    // Por ahora, priorizaremos al cliente logueado.
+    // Log
     if (!isset($_SESSION['id_cliente']) && !isset($_SESSION['id_empleado'])) {
-        // Si nadie está logueado, se redirige al login de clientes como acción por defecto.
         header("Location: rutas.php?r=login");
         return;
     }
@@ -43,12 +41,10 @@ class CarritoController {
     }
     require_once "models/Venta.php";
 
-    // Asignar el cliente y empleado correctos a la venta
-    $id_cliente = $_SESSION['id_cliente'] ?? 1; // Si un empleado compra, se asigna al cliente por defecto (ID 1). Idealmente, el empleado seleccionaría un cliente.
-    $id_empleado = $_SESSION['id_empleado'] ?? null; // La venta puede no tener un empleado si la hace el cliente directamente.
+    $id_cliente = $_SESSION['id_cliente'] ?? 1;
+    $id_empleado = $_SESSION['id_empleado'] ?? null;
 
-    // La base de datos requiere un empleado, así que si es un cliente, asignamos uno por defecto.
-    if ($id_empleado === null) $id_empleado = 1; // Asignar al empleado 'Carlos Ramírez' por defecto.
+    if ($id_empleado === null) $id_empleado = 1;
 
     Venta::registrar($id_cliente, $id_empleado, $carrito);
 
@@ -57,7 +53,7 @@ class CarritoController {
     }
 
     public function generarBoleta() {
-        // Verificamos si se está pidiendo una boleta de una venta específica (desde el historial)
+        // historial
         if (isset($_GET['id_venta'])) {
             require_once "models/Venta.php";
             $id_venta = (int)$_GET['id_venta'];
@@ -68,13 +64,12 @@ class CarritoController {
                 return;
             }
 
-            // Pasamos los datos de la venta a la vista del PDF
             ob_start();
-            include 'views/boleta_pdf.php'; // La vista ahora usará la variable $venta
+            include 'views/boleta_pdf.php'; 
             $html = ob_get_clean();
 
         } else {
-            // Lógica original: generar boleta para el carrito actual en sesión
+            // actual
             if (!isset($_SESSION['id_empleado']) && !isset($_SESSION['id_cliente'])) {
                 header("Location: rutas.php?r=login");
                 return;
@@ -94,11 +89,11 @@ class CarritoController {
             }
 
             ob_start();
-            include 'views/boleta_pdf.php'; // La vista usará $productos y $total
+            include 'views/boleta_pdf.php';
             $html = ob_get_clean();
         }
 
-        // Generar el PDF (código común para ambos casos)
+        // Generar el PDF 
         require 'libs/dompdf/autoload.inc.php';
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);

@@ -78,46 +78,46 @@ INSERT INTO categorias (nombre_categoria) VALUES
 
 -- 🔹 Insertar Productos (4 por categoría, con marcas y modelos reales o realistas)
 INSERT INTO productos (nombre, descripcion, talla, color, precio, stock, foto_url, id_categoria) VALUES
--- 🟫 Polos (id_categoria = 1)
+-- Polos (id_categoria = 1)
 ('Polo Nike Dri-FIT', 'Polo deportivo con tecnología Dri-FIT que absorbe el sudor.', 'M', 'Negro', 79.90, 50, 'nikedrifit.jpg', 1),
 ('Polo Adidas Essentials', 'Polo casual con logo bordado en el pecho.', 'L', 'Blanco', 69.90, 40, 'adidas_essentials.jpg', 1),
 ('Polo Puma Classics', 'Polo clásico con diseño sencillo y elegante.', 'S', 'Gris', 59.90, 60, 'puma_classics.jpg', 1),
 ('Polo Lacoste Slim Fit', 'Polo de algodón premium con logo de cocodrilo.', 'M', 'Azul Marino', 149.90, 30, 'lacoste_slim.jpg', 1),
 
--- 🟧 Pantalones (id_categoria = 2)
-('Jean Levi\'s 511 Slim', 'Jean ajustado con diseño moderno.', '32', 'Azul Oscuro', 179.00, 35, 'levis_511.jpg', 2),
+--  Pantalones (id_categoria = 2)
+('Jean Levis 511 Slim', 'Jean ajustado con diseño moderno.', '32', 'Azul Oscuro', 179.00, 35, 'levis_511.jpg', 2),
 ('Jogger Adidas Originals', 'Jogger deportivo para uso diario.', 'M', 'Gris', 129.90, 40, 'adidas_jogger.jpg', 2),
 ('Pantalón Dockers Alpha', 'Pantalón chino de corte moderno.', '34', 'Beige', 159.90, 25, 'dockers_alpha.jpg', 2),
 ('Jean Wrangler Regular Fit', 'Jean clásico de corte recto.', '30', 'Azul Claro', 139.90, 20, 'wrangler_regular.jpg', 2),
 
--- 🟨 Zapatillas (id_categoria = 3)
+--  Zapatillas (id_categoria = 3)
 ('Zapatilla Nike Air Max 270', 'Zapatilla cómoda con cámara de aire visible.', '42', 'Negro', 399.00, 15, 'nike_air_max.jpg', 3),
 ('Zapatilla Adidas Ultraboost', 'Ideal para correr, con excelente amortiguación.', '41', 'Blanco', 479.00, 10, 'adidas_ultraboost.jpg', 3),
 ('Zapatilla Puma RS-X', 'Zapatilla retro con gran estilo urbano.', '43', 'Rojo', 349.90, 20, 'puma_rsx.jpg', 3),
 ('Zapatilla New Balance 574', 'Diseño clásico para uso diario.', '42', 'Gris', 299.00, 18, 'nb_574.jpg', 3),
 
--- 🟩 Chaquetas (id_categoria = 4)
+--  Chaquetas (id_categoria = 4)
 ('Chaqueta The North Face Resolve', 'Chaqueta impermeable resistente al viento.', 'L', 'Negro', 499.00, 12, 'tnf_resolve.jpg', 4),
 ('Chaqueta Columbia Watertight II', 'Ideal para climas húmedos, ligera y cómoda.', 'M', 'Azul Marino', 459.00, 14, 'columbia_watertight.jpg', 4),
 ('Chaqueta Adidas Windbreaker', 'Chaqueta liviana para correr.', 'S', 'Verde', 299.90, 25, 'adidas_windbreaker.jpg', 4),
 ('Chaqueta Puma EvoKNIT', 'Chaqueta deportiva con diseño ergonómico.', 'M', 'Gris', 319.90, 10, 'puma_evoknit.jpg', 4);
 
--- 🔹 Insertar Clientes
+--  Insertar Clientes
 INSERT INTO clientes (nombres, apellidos, dni, correo, telefono, direccion) VALUES
 ('Juan', 'Pérez', '12345678', 'juan.perez@gmail.com', '999888777', 'Av. Siempre Viva 123'),
 ('Ana', 'Gonzales', '87654321', 'ana.gonzales@hotmail.com', '987654321', 'Calle Falsa 456');
 
--- 🔹 Insertar Empleados
+--  Insertar Empleados
 INSERT INTO empleados (nombres, apellidos, usuario, password, cargo, correo, telefono) VALUES
 ('Carlos', 'Ramírez', 'cramirez', '$2y$10$EizHkX.M2yAS9LHblS4pX.JgY29P.J.eXhA7sLwVvj6aNfG.NqT9S', 'Vendedor', 'carlos.ramirez@tiendaropa.com', '988776655'), -- pass: 12345
 ('Lucía', 'Mendoza', 'lmendoza', '$2y$10$EizHkX.M2yAS9LHblS4pX.JgY29P.J.eXhA7sLwVvj6aNfG.NqT9S', 'Cajera', 'lucia.mendoza@tiendaropa.com', '977665544'); -- pass: 12345
 
--- 🔹 Insertar Ventas
+--  Insertar Ventas
 INSERT INTO ventas (fecha, id_cliente, id_empleado, total) VALUES
 ('2025-07-29 10:30:00', 1, 1, 179.80),
 ('2025-07-29 11:00:00', 2, 2, 150.00);
 
--- 🔹 Insertar Detalle de Venta
+--  Insertar Detalle de Venta
 INSERT INTO detalle_venta (id_venta, id_producto, cantidad, precio_unitario) VALUES
 (1, 1, 2, 29.90),   -- 2 polos
 (1, 2, 1, 89.90),   -- 1 jean

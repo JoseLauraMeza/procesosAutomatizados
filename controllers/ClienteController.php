@@ -10,7 +10,6 @@ class ClienteController {
     }
 
     public function guardar() {
-        // Validar que los datos POST no estén vacíos
         $campos_requeridos = ['nombres', 'apellidos', 'dni', 'correo', 'usuario', 'password'];
         foreach ($campos_requeridos as $campo) {
             if (empty($_POST[$campo])) {

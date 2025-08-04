@@ -11,10 +11,8 @@
     (function() {
         const id_venta = <?= json_encode($id_venta ?? 0) ?>;
 
-        // Abrir la boleta para la venta específica en una nueva pestaña
         window.open(`rutas.php?r=boleta&id_venta=${id_venta}`, '_blank');
 
-        // Redirigir la página actual a la lista de productos después de 3 segundos
         setTimeout(function() {
             window.location.href = 'rutas.php?r=productos';
         }, 3000);

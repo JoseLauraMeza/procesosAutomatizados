@@ -45,12 +45,12 @@ class Venta {
 
             $conn->commit();
             $conn->close();
-            return $id_venta; // Devolvemos el ID de la venta en caso de éxito
+            return $id_venta; 
         } catch (Exception $e) {
             $conn->rollback();
             error_log("Error al registrar la venta: " . $e->getMessage());
             $conn->close();
-            return false; // Devolvemos false si hay error
+            return false;
         }
     }
 
@@ -58,7 +58,7 @@ class Venta {
         $conn = Conexion::conectar();
         $venta = [];
 
-        // Obtener datos principales de la venta y del cliente/empleado
+        // Obtener datos principales de la venta y del cliente
         $stmtVenta = $conn->prepare("
             SELECT v.id_venta, v.fecha, v.total, 
                    c.nombres as cliente_nombres, c.apellidos as cliente_apellidos,
@@ -90,13 +90,6 @@ class Venta {
         $conn->close();
         return $venta;
     }
-
-    /**
-     * Obtiene todas las ventas de un cliente específico.
-     *
-     * @param int $id_cliente El ID del cliente.
-     * @return array Un array con el historial de ventas.
-     */
     public static function obtenerPorCliente($id_cliente) {
         $conn = Conexion::conectar();
         $stmt = $conn->prepare("

@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <?php if (!empty($productos)): 
-    // Producto destacado (el primero por ahora)
+    // Producto destacado (el primero)
     $destacado = $productos[0]; 
 ?>
 <div class="bg-light rounded-4 p-5 mb-5 d-flex align-items-center justify-content-between flex-wrap">
@@ -9,7 +9,6 @@
         <h1 class="fw-bold text-dark">Luce con estilo<br> con <?= htmlspecialchars($destacado['nombre']) ?></h1>
         <div class="mt-4">
             <a href="rutas.php?r=agregar&id=<?= $destacado['id_producto'] ?>" class="btn btn-warning me-3">Compra ahora</a>
-            <a href="rutas.php?r=productos" class="btn btn-link text-dark">Explorar ofertas →</a>
         </div>
     </div>
     <img src="public/img/<?= $destacado['foto_url'] ?>" alt="Producto Destacado" style="max-height: 280px; border-radius: 12px;">

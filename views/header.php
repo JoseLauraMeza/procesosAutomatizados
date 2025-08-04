@@ -21,17 +21,16 @@
       <img src="public/img/1.png" alt="Clothes Plus" style="height: 40px;">
     </a>
 
-    <!-- Menú centrado -->
+    <!-- Menu -->
     <div class="mx-auto">
       <ul class="navbar-nav flex-row gap-4">
         <li class="nav-item"><a href="rutas.php?r=productos" class="nav-link text-dark">Inicio</a></li>
-        <li class="nav-item"><a href="rutas.php?r=productos" class="nav-link text-dark">Compra</a></li>
-        <li class="nav-item"><a href="rutas.php?r=about" class="nav-link text-dark">Sobre nosotros</a></li>
-        <li class="nav-item"><a href="#" class="nav-link text-dark">Contactos</a></li>
+        <li class="nav-item"><a href="rutas.php?r=carrito" class="nav-link text-dark">Compra</a></li>
+        <li class="nav-item"><a href="rutas.php?r=historial" class="nav-link text-dark">Pedidos</a></li>
       </ul>
     </div>
 
-    <!-- Usuario y dropdown -->
+    <!-- Usuario -->
     <div class="dropdown">
       <?php if (isset($_SESSION['id_cliente'])): ?>
         <a href="#" class="nav-link dropdown-toggle text-primary" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">

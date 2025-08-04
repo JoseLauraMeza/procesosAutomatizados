@@ -21,14 +21,14 @@
         <h2>Boleta de Venta - ClothesPlus</h2>
     </div>
 
-    <?php if (isset($venta)): // CASO 1: Es una venta histórica (desde el historial) ?>
+    <?php if (isset($venta)): // CASO 1: historial ?>
         <div class="info">
             <p><strong>N° de Venta:</strong> #<?= htmlspecialchars($venta['datos']['id_venta']) ?></p>
             <p><strong>Fecha:</strong> <?= htmlspecialchars(date('d/m/Y H:i', strtotime($venta['datos']['fecha']))) ?></p>
             <p><strong>Cliente:</strong> <?= htmlspecialchars($venta['datos']['cliente_nombres'] . ' ' . $venta['datos']['cliente_apellidos']) ?></p>
             <p><strong>Atendido por:</strong> <?= htmlspecialchars($venta['datos']['empleado_nombres'] . ' ' . $venta['datos']['empleado_apellidos']) ?></p>
         </div>
-    <?php else: // CASO 2: Es una vista previa del carrito en sesión ?>
+    <?php else: // CASO 2: vista previa del carrito en sesión ?>
         <div class="info">
             <p><strong>Fecha:</strong> <?= date('d/m/Y H:i') ?></p>
             <p><strong>Estado:</strong> VISTA PREVIA (no es un comprobante final)</p>
