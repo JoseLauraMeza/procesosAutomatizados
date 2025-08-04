@@ -40,6 +40,9 @@
                 </span>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="rutas.php?r=historial">Mis Pedidos</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="rutas.php?r=logout">Cerrar Sesión</a>
             </li>
         <?php else: // Sin sesión ?>

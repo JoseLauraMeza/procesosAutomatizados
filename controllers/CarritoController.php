@@ -57,38 +57,54 @@ class CarritoController {
     }
 
     public function generarBoleta() {
-    // Proteger la ruta, solo para empleados logueados
-    if (!isset($_SESSION['id_empleado']) && !isset($_SESSION['id_cliente'])) {
-        header("Location: rutas.php?r=login");
-        return;
-    }
+        // Verificamos si se está pidiendo una boleta de una venta específica (desde el historial)
+        if (isset($_GET['id_venta'])) {
+            require_once "models/Venta.php";
+            $id_venta = (int)$_GET['id_venta'];
+            $venta = Venta::obtenerPorId($id_venta);
 
-    if (empty($_SESSION['carrito'])) {
-        echo "No hay productos en el carrito.";
-        return;
-    }
+            if (!$venta) {
+                echo "Venta no encontrada.";
+                return;
+            }
 
-    $productos = $_SESSION['carrito'];
-    $total = 0;
+            // Pasamos los datos de la venta a la vista del PDF
+            ob_start();
+            include 'views/boleta_pdf.php'; // La vista ahora usará la variable $venta
+            $html = ob_get_clean();
 
-    foreach ($productos as &$producto) {
-        $subtotal = $producto['precio'] * $producto['cantidad'];
-        $producto['subtotal'] = $subtotal;
-        $total += $subtotal;
-    }
+        } else {
+            // Lógica original: generar boleta para el carrito actual en sesión
+            if (!isset($_SESSION['id_empleado']) && !isset($_SESSION['id_cliente'])) {
+                header("Location: rutas.php?r=login");
+                return;
+            }
 
-    // Usa ob_start() para capturar el contenido de la vista
-    ob_start();
-    include 'views/boleta_pdf.php'; // Aquí se usa $productos y $total
-    $html = ob_get_clean();
+            if (empty($_SESSION['carrito'])) {
+                echo "No hay productos en el carrito.";
+                return;
+            }
 
-    // Generar el PDF
-    require 'libs/dompdf/autoload.inc.php';
-    $dompdf = new Dompdf();
-    $dompdf->loadHtml($html);
-    $dompdf->setPaper('A4', 'portrait');
-    $dompdf->render();
-    $dompdf->stream("boleta.pdf", array("Attachment" => false));
-    exit;
+            $productos = $_SESSION['carrito'];
+            $total = 0;
+            foreach ($productos as &$producto) {
+                $subtotal = $producto['precio'] * $producto['cantidad'];
+                $producto['subtotal'] = $subtotal;
+                $total += $subtotal;
+            }
+
+            ob_start();
+            include 'views/boleta_pdf.php'; // La vista usará $productos y $total
+            $html = ob_get_clean();
+        }
+
+        // Generar el PDF (código común para ambos casos)
+        require 'libs/dompdf/autoload.inc.php';
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream("boleta.pdf", ["Attachment" => false]);
+        exit;
     }
 }

@@ -7,6 +7,7 @@ require_once "controllers/ProductoController.php";
 require_once "controllers/CarritoController.php";
 require_once "controllers/LoginController.php";
 require_once "controllers/ClienteController.php";
+require_once "controllers/CuentaController.php";
 
 $r = $_GET['r'] ?? 'productos';
 
@@ -20,6 +21,9 @@ switch ($r) {
         break;
     case 'guardar_cliente':
         (new ClienteController())->guardar();
+        break;
+    case 'historial':
+        (new CuentaController())->verHistorial();
         break;
     case 'productos':
         (new ProductoController())->index();
